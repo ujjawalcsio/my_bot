@@ -1,0 +1,241 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:include filename="inertial_macros.xacro"/>
+    
+
+    <material name="white">
+        <color rgba="1 1 1 1" />
+    </material>
+
+    <material name="orange">
+        <color rgba="1 0.3 0.1 1"/>
+    </material>
+
+    <material name="blue">
+        <color rgba="0.2 0.2 1 1"/>
+    </material>
+
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>
+
+
+
+
+	<!-- We need to have this dummy link otherwise Gazebo will complain -->
+	<link name="dummy">
+	</link>
+	<joint name="dummy_joint" type="fixed">
+		<parent link="dummy"/>
+		<child link="body_link"/>
+	</joint>
+
+
+
+	<!-- START: Body link of the robot -->
+	<link name="body_link">
+		<visual>
+			<geometry>
+				<box size="0.47 0.42 0.25" />
+			</geometry>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+            <material name="white"/>
+		</visual>
+		<collision>
+			<geometry>
+				<box size="0.47 0.42 0.25" />
+			</geometry>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+		</collision>
+        <xacro:inertial_box mass="0.5" x="0.47" y="0.42" z="0.25">
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </xacro:inertial_box>
+	</link>
+
+	<!-- End: Body link of the robot -->
+
+
+
+
+
+	<!-- START: Back right wheel of the robot and the joint -->
+
+	<joint name="wheel1_joint" type="continuous">
+		<parent link="body_link"/>
+		<child link="wheel1_link"/>
+		<origin xyz="-0.25 -0.26 -0.165" rpy="0 0 0" />
+		<axis xyz="0 1 0"/> 
+		<limit effort="1000" velocity="1000"/>
+		<dynamics damping="1.0" friction="1.0"/>
+	</joint>
+
+	<link name="wheel1_link">
+		<visual>
+			<origin rpy="1.570795 0 0" xyz="0 0 0"/>
+            <material name="black"/>
+			<geometry>
+				<cylinder length="0.09" radius="0.135"/>
+			</geometry>
+		</visual>
+    
+		<collision>
+			<origin rpy="1.570795 0 0" xyz="0 0 0"/>
+			<geometry>
+				<cylinder length="0.09" radius="0.135"/>
+			</geometry>
+		</collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.09" radius="0.135">
+            <origin xyz="0 0 0" rpy="1.570795 0 0"/>
+        </xacro:inertial_cylinder>
+	</link>
+
+
+	<!-- END: Back right wheel of the robot and the joint -->
+
+	<!-- START: Back left wheel of the robot and the joint -->
+
+	<joint name="wheel2_joint" type="continuous">
+		<parent link="body_link"/>
+		<child link="wheel2_link"/>
+		<origin xyz="-0.25 0.26 -0.165" rpy="0 0 0"  />
+		<axis xyz="0 1 0"/> 
+		<limit effort="1000" velocity="1000"/>
+		<dynamics damping="1.0" friction="1.0"/>
+	</joint>
+
+	<link name="wheel2_link">
+		<visual>
+			<origin rpy="1.570795 0 0" xyz="0 0 0"/>
+            <material name="black"/>
+			<geometry>
+				<cylinder length="0.09" radius="0.135"/>
+			</geometry>
+		</visual>
+		
+		<collision>
+			<origin rpy="1.570795 0 0" xyz="0 0 0"/>
+			<geometry>
+				<cylinder length="0.09" radius="0.135"/>
+			</geometry>
+		</collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.09" radius="0.135">
+            <origin xyz="0 0 0" rpy="1.570795 0 0"/>
+        </xacro:inertial_cylinder>
+	</link>
+
+
+	<!-- END: Back left wheel of the robot and the join -->
+
+	<!-- START: Front right wheel of the robot and the joint -->
+
+	<joint name="wheel3_joint" type="continuous">
+		<parent link="body_link"/>
+		<child link="wheel3_link"/>
+		<origin xyz="0.25 -0.26 -0.165" rpy="0 0 0"/>
+		<axis xyz="0 1 0"/>
+		<limit effort="1000" velocity="1000"/>
+		<dynamics damping="1.0" friction="1.0"/>
+	</joint>
+
+	<link name="wheel3_link">
+		<visual>
+			<origin rpy="1.570795 0 0" xyz="0 0 0"/>
+            <material name="black"/>
+			<geometry>
+				<cylinder length="0.09" radius="0.135"/>
+			</geometry>
+		</visual>
+		
+		<collision>
+			<origin rpy="1.570795 0 0" xyz="0 0 0"/>
+			<geometry>
+				<cylinder length="0.09" radius="0.135"/>
+			</geometry>
+		</collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.09" radius="0.135">
+            <origin xyz="0 0 0" rpy="1.570795 0 0"/>
+        </xacro:inertial_cylinder>
+	</link>
+
+		
+	<!-- END: Front right wheel of the robot and the joint -->
+
+	<!-- START: Front left wheel of the robot and joint -->
+
+	<joint name="wheel4_joint" type="continuous">
+		<parent link="body_link"/>
+		<child link="wheel4_link"/>
+		<origin xyz="0.25 0.26 -0.165" rpy="0 0 0" />
+		<axis xyz="0 1 0"/>
+		<limit effort="1000" velocity="1000"/>
+		<dynamics damping="1.0" friction="1.0"/> 
+	</joint>
+
+	<link name="wheel4_link">
+		<visual>
+			<origin rpy="1.570795 0 0" xyz="0 0 0"/>
+            <material name="black"/>
+			<geometry>
+				<cylinder length="0.09" radius="0.135"/>
+			</geometry>
+		</visual>
+		
+		<collision>
+			<origin rpy="1.570795 0 0" xyz="0 0 0"/>
+			<geometry>
+				<cylinder length="0.09" radius="0.135"/>
+			</geometry>
+		</collision>
+        <xacro:inertial_cylinder mass="0.1" length="0.09" radius="0.135">
+            <origin xyz="0 0 0" rpy="1.570795 0 0"/>
+        </xacro:inertial_cylinder>
+	</link>
+
+	
+	<!-- END: Front left wheel of the robot and joint -->
+
+</robot>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
